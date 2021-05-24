@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'login',
@@ -7,15 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  model: any = {};
+  loginModel: any = {};
 
-  constructor() { }
+  constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   login() {
-    // TODO: will be implemented
+    this.authService.login(this.loginModel).subscribe(next => {
+      alert("Successfull login");
+      this.router.navigate(['/']);
+    }, error => {
+      alert(error);
+    });
   }
 
+  goToRegisterPage() {
+    this.router.navigate(['/register']);
+  }
 }
