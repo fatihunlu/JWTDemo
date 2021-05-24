@@ -28,6 +28,7 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'fetch-data', component: FetchDataComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent }
     ])
