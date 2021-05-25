@@ -1,6 +1,6 @@
 namespace JwtDemo.App.Dtos
 {
-    public class UserLoginDto
+    public class UserLoginModel
     {
         public string Email { get; set; }
         public string Password { get; set; }

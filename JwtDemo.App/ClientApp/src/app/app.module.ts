@@ -12,6 +12,12 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
+import { JwtModule } from "@auth0/angular-jwt";
+
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +32,13 @@ import { RegisterComponent } from './register/register.component';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:5000"],
+        disallowedRoutes: ["localhost:5000/api/auth"]
+      },
+    }),
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'fetch-data', component: FetchDataComponent },

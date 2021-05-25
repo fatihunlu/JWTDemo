@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -7,15 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  model: any = {};
+  registerModel: any = {};
 
-  constructor() { }
+  constructor(private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
   }
 
   register() {
-    // TODO: will be implemented
+    this.authService.register(this.registerModel).subscribe(()=> {
+      alert("user created");
+    }, error => {
+      alert("error => "+ error);
+    }, () => {
+      this.authService.login(this.registerModel).subscribe(()=> {
+        this.router.navigate(['/fetch-data']);
+      })
+    });
   }
-
 }

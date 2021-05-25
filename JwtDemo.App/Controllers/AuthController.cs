@@ -28,7 +28,7 @@ namespace JwtDemo.App.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(UserLoginDto model)
+        public async Task<IActionResult> Login(UserLoginModel model)
         {
              if(!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -42,6 +42,22 @@ namespace JwtDemo.App.Controllers
             var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
 
             return result.Succeeded ? Ok(new { token = GenerateJwtToken(user) }) : Unauthorized();
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(UserRegisterModel model) 
+        {
+           if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var user = new User {
+                UserName = model.UserName,
+                Email = model.Email,
+            };
+
+            var result = await _userManager.CreateAsync(user, model.Password);
+
+            return result.Succeeded ? StatusCode(201) : BadRequest(result.Errors);
         }
 
         private string GenerateJwtToken(User user)
