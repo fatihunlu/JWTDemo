@@ -21,7 +21,7 @@ dotnet run
 
 ### Builds and hot-reloads for development
 ```
-npm run serve
+dotnet watch run
 ```
 
 
