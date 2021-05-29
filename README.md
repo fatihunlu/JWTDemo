@@ -11,7 +11,6 @@ This project is an example how to implement JWT on ASP.Net Core and use JWT to a
 Medium Link: -
 
 
-
 ## Project setup
 
 Build and Run Asp.net core web application and (SPA) with following command.
