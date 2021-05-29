@@ -8,7 +8,7 @@ This project is an example how to implement JWT on ASP.Net Core and use JWT to a
 | jwtuser@yopmail.com | JwtApp123! |
 
 
-Medium Link: -
+Medium Link: https://unlu-fa.medium.com/what-is-jwt-json-web-token-and-how-to-implement-jwt-auth-in-asp-net-core-618753207b47
 
 
 ## Project setup
